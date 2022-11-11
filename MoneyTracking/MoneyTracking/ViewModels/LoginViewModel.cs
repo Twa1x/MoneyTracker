@@ -1,5 +1,7 @@
 ﻿using MoneyTracking.Data;
+using MoneyTracking.Tables;
 using MoneyTracking.Views;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,15 +51,40 @@ namespace MoneyTracking.ViewModels
         }
 
         public Command LoginCommand { get; }
+        public Command SignUpCommand { get; }
 
         public LoginViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);
+            SignUpCommand = new Command(OnSignUpClicked);
         }
 
         private  void OnLoginClicked()
         {
-          
+            
+           
+            var myQuery = database.database.Table<RegUserTable>().Where(u => u.UserName.Equals(userName) && u.Password.Equals(password));
+            if (myQuery != null)
+            {
+                App.Current.MainPage = new NavigationPage(new AboutPage());
+            }
+            else
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    var result = await App.Current.MainPage.DisplayAlert("Error", "Credentials Wrong", "Yes", "Cancel");
+                    if (result)
+                        App.Current.MainPage = new NavigationPage(new LoginPage());
+                    else
+                        App.Current.MainPage = new NavigationPage(new LoginPage());
+
+                });
+            }
+        }
+
+        private void OnSignUpClicked()
+        {
+            App.Current.MainPage = new NavigationPage(new RegistrationPage());
         }
     }
 }

@@ -21,32 +21,6 @@ namespace MoneyTracking.Views
             this.BindingContext = new LoginViewModel();
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            App.Current.MainPage = new NavigationPage(new RegistrationPage());
-        }
-
-        private void Button_Clicked_1(object sender, EventArgs e)
-        {
-            var dbpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db");
-            var db = new SQLiteConnection(dbpath);
-            var myQuery = db.Table<RegUserTable>().Where(u => u.UserName.Equals(EntryUser.Text) && u.Password.Equals(EntryPassword.Text)).FirstOrDefault();
-            if (myQuery != null)
-            {
-                App.Current.MainPage = new NavigationPage(new AboutPage());
-            }
-            else
-            {
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    var result = await this.DisplayAlert("Error", "Credentials Wrong", "Yes", "Cancel");
-                    if (result)
-                        App.Current.MainPage = new NavigationPage( new LoginPage());
-                    else
-                        App.Current.MainPage = new NavigationPage( new LoginPage());
-
-                });
-            }
-        }
+    
     }
 }

@@ -10,7 +10,7 @@ namespace MoneyTracking.Data
 {
     public class UserDataBase
     {
-        readonly SQLiteAsyncConnection database;
+       public readonly SQLiteAsyncConnection database;
 
         public UserDataBase(string dbPath)
         {
@@ -24,13 +24,9 @@ namespace MoneyTracking.Data
             return database.Table<RegUserTable>().ToListAsync();
         }
 
-        //public Task<RegUserTable> GetUserAsync(int id)
-        //{
-        //    // Get a specific User.
-        //    return database.Table<User>()
-        //                    .Where(i => i.Id == id)
-        //                    .FirstOrDefaultAsync();
-        //}
+
+      
+
 
         public Task<int> SaveUserAsync(RegUserTable User)
         {
