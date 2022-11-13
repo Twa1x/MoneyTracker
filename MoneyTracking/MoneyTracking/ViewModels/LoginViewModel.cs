@@ -70,7 +70,7 @@ namespace MoneyTracking.ViewModels
             Console.WriteLine(myQuery);
             if (myQuery != null)
             {
-                App.Current.MainPage = new NavigationPage(new HomePage());
+                App.Current.MainPage = new NavigationPage(new HomePage(new RegUserTable { UserName=UserName, Password=password}));
             }
             else
             {

@@ -3,15 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoneyTracking.Views.HomePage">
     <ContentPage.Content>
-      
+
 
         <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-                    <Image Source="piggy_bank.png" VerticalOptions="Center" HeightRequest="64" />
-                </ContentView>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                <Image Source="piggy_bank.png" BackgroundColor="White" VerticalOptions="Center" HeightRequest="150" />
             </StackLayout>
-            <Button Text="LogOut" Clicked="Button_Clicked"></Button>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+              
+                    <Label Text="Welcome,"></Label>
+            </StackLayout>
+           
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="{Binding UserName, Mode=TwoWay}"></Label>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                <Button Text="LogOut" Clicked="Button_Clicked"></Button>
+            
+            </StackLayout>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

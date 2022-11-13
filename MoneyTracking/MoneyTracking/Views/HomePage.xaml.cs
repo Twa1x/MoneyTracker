@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MoneyTracking.Tables;
+using MoneyTracking.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,10 @@ namespace MoneyTracking.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        public HomePage()
+        public HomePage(RegUserTable user)
         {
             InitializeComponent();
+            BindingContext = new HomeViewModel(user);
         }
 
         private void Button_Clicked(object sender, EventArgs e)
