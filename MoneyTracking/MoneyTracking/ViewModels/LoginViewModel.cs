@@ -61,12 +61,16 @@ namespace MoneyTracking.ViewModels
 
         private  void OnLoginClicked()
         {
-            
-           
-            var myQuery = database.database.Table<RegUserTable>().Where(u => u.UserName.Equals(userName) && u.Password.Equals(password));
+
+            Console.WriteLine(userName);
+            Console.WriteLine(password);
+            var dbpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db");
+            var db = new SQLiteConnection(dbpath);
+            var myQuery = db.Table<RegUserTable>().Where(u => u.UserName.Equals(userName) && u.Password.Equals(password)).FirstOrDefault();
+            Console.WriteLine(myQuery);
             if (myQuery != null)
             {
-                App.Current.MainPage = new NavigationPage(new AboutPage());
+                App.Current.MainPage = new NavigationPage(new HomePage());
             }
             else
             {
