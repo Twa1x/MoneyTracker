@@ -15,7 +15,7 @@ namespace MoneyTracking.ViewModels
 {
     public class SignUpViewModel : INotifyPropertyChanged
     {
-        UserDataBase database = new UserDataBase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db"));
+        DataBase database = new DataBase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db"));
   
         private string userName;
         private string password;
@@ -75,10 +75,10 @@ namespace MoneyTracking.ViewModels
         {
             Console.WriteLine(userName);
             Console.WriteLine(password);
-            Console.WriteLine("asdf");
+          
             RegUserTable tempUser = new RegUserTable { UserName = userName, Password = password, Email = email };
 
-           if(database.SaveUserAsync(tempUser) != null)
+           if(database.InsertUserAsync(tempUser) != null)
             {
 
                 Device.BeginInvokeOnMainThread(async () =>

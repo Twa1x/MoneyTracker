@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace MoneyTracking.Data
 {
-    public class UserDataBase
+    public class DataBase
     {
        public readonly SQLiteAsyncConnection database;
 
-        public UserDataBase(string dbPath)
+        public DataBase(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
             database.CreateTableAsync<RegUserTable>().Wait();
+            database.CreateTableAsync<SpendingTable>().Wait();
         }
 
         public Task<List<RegUserTable>> GetUsersAsync()
@@ -23,18 +24,29 @@ namespace MoneyTracking.Data
             //Get all Users.
             return database.Table<RegUserTable>().ToListAsync();
         }
+            
 
-
-      
-
-
-        public Task<int> SaveUserAsync(RegUserTable User)
+        public Task<int> InsertUserAsync(RegUserTable User)
         {
         
                 // Save a new User.
                 return database.InsertAsync(User);
             
         }
+        public Task<List<SpendingTable>> GetSpendingAsync()
+        {
+            //Get all Users.
+            return database.Table<SpendingTable>().ToListAsync();
+        }
+
+        public Task<int> InsertSpendingAsync(SpendingTable Spending)
+        {
+
+            // Save a new User.
+            return database.InsertAsync(Spending);
+
+        }
+
 
         public Task<int> DeleteUserAsync(RegUserTable User)
         {

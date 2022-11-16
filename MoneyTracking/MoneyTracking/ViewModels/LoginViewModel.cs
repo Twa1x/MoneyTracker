@@ -15,7 +15,7 @@ namespace MoneyTracking.ViewModels
     public class LoginViewModel : BaseViewModel
     {
 
-        UserDataBase database = new UserDataBase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db"));
+        DataBase database = new DataBase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db"));
 
         private string userName;
         private string password;
@@ -70,7 +70,7 @@ namespace MoneyTracking.ViewModels
             Console.WriteLine(myQuery);
             if (myQuery != null)
             {
-                App.Current.MainPage = new NavigationPage(new HomePage(new RegUserTable { UserName=UserName, Password=password}));
+                App.Current.MainPage = new NavigationPage(new HomePage(myQuery));
             }
             else
             {
