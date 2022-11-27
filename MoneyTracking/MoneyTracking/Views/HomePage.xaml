@@ -20,7 +20,9 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                 <Label Text="{Binding UserName, Mode=TwoWay}"></Label>
             </StackLayout>
-
+            <StackLayout>
+                
+            </StackLayout>
 
             <StackLayout >
                 <Entry Placeholder="Spent" Text="{Binding Spent, Mode=TwoWay}" FontSize="16"></Entry>
@@ -35,7 +37,7 @@
  
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
-                <Button Text="LogOut" Clicked="Button_Clicked" Command="{Binding LogOutCommand}"></Button>
+                <Button Text="LogOut"  Command="{Binding LogOutCommand}"></Button>
             
             </StackLayout>
             

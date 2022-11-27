@@ -76,7 +76,7 @@ namespace MoneyTracking.ViewModels
             Console.WriteLine(userName);
             Console.WriteLine(password);
           
-            RegUserTable tempUser = new RegUserTable { UserName = userName, Password = password, Email = email };
+            RegUserTable tempUser = new RegUserTable {UserId= Guid.NewGuid(), UserName = userName, Password = password, Email = email };
 
            if(database.InsertUserAsync(tempUser) != null)
             {

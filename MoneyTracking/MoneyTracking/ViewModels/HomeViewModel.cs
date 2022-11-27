@@ -15,6 +15,7 @@ namespace MoneyTracking.ViewModels
     {
 
         private string userName;
+        
         DataBase database = new DataBase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db"));
 
         private string spent;
@@ -67,28 +68,41 @@ namespace MoneyTracking.ViewModels
             }
         }
         public Command LogOutCommand { get; }
-        RegUserTable user;
+        private RegUserTable user;
+        public RegUserTable User
+        {
+            get { return user; }
+            set
+            {
+                user = value;
+                OnPropertyChanged();
+            }
+        }
         public HomeViewModel(RegUserTable user)
         {
+            this.user = user;
             UserName = user.UserName;
             LogOutCommand = new Command(OnLogOutClicked);
         }
 
         private void OnLogOutClicked()
         {
-            Console.WriteLine(spent);
-            Console.WriteLine(price);
-            Console.WriteLine(data);
+           // Console.WriteLine(spent);
+           // Console.WriteLine(price);
+           // Console.WriteLine(data);
+            Console.WriteLine(User.UserId);
 
-            SpendingTable tempSpending = new SpendingTable { UserId = user.UserId, Data = data, Price = price, Spent = spent };
 
-            if(database.InsertSpendingAsync(tempSpending)!=null)
+
+            SpendingTable tempSpending = new SpendingTable {  SpendingId=Guid.NewGuid(), UserId = user.UserId, Data = data, Price = price, Spent = spent };
+
+            if (database.InsertSpendingAsync(tempSpending) != null)
             {
 
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    var result = await App.Current.MainPage.DisplayAlert("Sucess", "Added sucesfully the spent", "Ok","");
-                  
+                    var result = await App.Current.MainPage.DisplayAlert("Sucess", "Added sucesfully the spent", "Ok", "-");
+                    App.Current.MainPage = new NavigationPage(new LoginPage());
 
                 });
             }
