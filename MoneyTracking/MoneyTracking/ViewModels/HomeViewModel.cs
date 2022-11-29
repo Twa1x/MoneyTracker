@@ -87,29 +87,23 @@ namespace MoneyTracking.ViewModels
 
         private void OnLogOutClicked()
         {
-           // Console.WriteLine(spent);
-           // Console.WriteLine(price);
-           // Console.WriteLine(data);
-            Console.WriteLine(User.UserId);
+            App.Current.MainPage = new NavigationPage(new LoginPage());
 
+            //SpendingTable tempSpending = new SpendingTable {  SpendingId=Guid.NewGuid(), UserId = user.UserId, Data = data, Price = price, Spent = spent };
 
+            //if (database.InsertSpendingAsync(tempSpending) != null)
+            //{
 
-            SpendingTable tempSpending = new SpendingTable {  SpendingId=Guid.NewGuid(), UserId = user.UserId, Data = data, Price = price, Spent = spent };
+            //    Device.BeginInvokeOnMainThread(async () =>
+            //    {
+            //        var result = await App.Current.MainPage.DisplayAlert("Sucess", "Added sucesfully the spent", "Ok", "-");
 
-            if (database.InsertSpendingAsync(tempSpending) != null)
-            {
-
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    var result = await App.Current.MainPage.DisplayAlert("Sucess", "Added sucesfully the spent", "Ok", "-");
-                    App.Current.MainPage = new NavigationPage(new LoginPage());
-
-                });
-            }
-            else
-            {
-                Console.WriteLine("failed");
-            }
+            //    });
+            //}
+            //else
+            //{
+            //    Console.WriteLine("failed");
+            //}
         }
     }
 }
