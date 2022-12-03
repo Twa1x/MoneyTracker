@@ -14,9 +14,9 @@ namespace MoneyTracking
 
         public App()
         {
+            Xamarin.Forms.DataGrid.DataGridComponent.Init();
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new LoginPage();
         }
 
