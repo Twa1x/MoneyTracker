@@ -37,8 +37,8 @@ namespace MoneyTracking.ViewModels
         }
 
 
-  
-   
+        DataBase database = new DataBase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db"));
+
 
 
         public string UserName
@@ -53,6 +53,9 @@ namespace MoneyTracking.ViewModels
 
         
         public Command LogOutCommand { get; }
+        public Command AddExpenseCommand { get; }
+
+
         private RegUserTable user;
         public RegUserTable User
         {
@@ -75,15 +78,32 @@ namespace MoneyTracking.ViewModels
             
             foreach (var item in myQuery)
             {
-                spendings.Add(new SpendingTable { Data = item.Data, Spent = item.Spent, Price = item.Price, UserId = item.UserId, SpendingId = item.SpendingId });
+                spendings.Add(new SpendingTable { Data = item.Data, Spent = item.Spent, Price = item.Price, UserId = item.UserId, SpendingId = item.SpendingId, Type=item.Type });
             }
             
          
             LogOutCommand = new Command(OnLogOutClicked);
+            AddExpenseCommand = new Command(OnAddExpenseClicked);
           
         }
 
-  
+        async  private void OnAddExpenseClicked()
+        {
+            string name = await App.Current.MainPage.DisplayPromptAsync("Name", "On what did you spent money?");
+            string price = await App.Current.MainPage.DisplayPromptAsync("Price", "How much did it cost?");
+            string data = await App.Current.MainPage.DisplayPromptAsync("Data", "When did you buy it?");
+            string type = "Expense";
+            SpendingTable tempSpending = new SpendingTable {  SpendingId=Guid.NewGuid(), UserId = user.UserId, Data = data, Price = Convert.ToDouble(price), Spent = name, Type=type};
+            if (database.InsertSpendingAsync(tempSpending) != null)
+           {
+
+                    Device.BeginInvokeOnMainThread(async () =>
+                    {
+                       var result = await App.Current.MainPage.DisplayAlert("Sucess", "Added sucesfully the spent", "Ok", "-");
+
+                   });
+                }
+        }
 
         private void OnLogOutClicked()
         {
@@ -93,21 +113,7 @@ namespace MoneyTracking.ViewModels
             }
             App.Current.MainPage = new NavigationPage(new LoginPage());
 
-            //SpendingTable tempSpending = new SpendingTable {  SpendingId=Guid.NewGuid(), UserId = user.UserId, Data = data, Price = price, Spent = spent };
-
-            //if (database.InsertSpendingAsync(tempSpending) != null)
-            //{
-
-            //    Device.BeginInvokeOnMainThread(async () =>
-            //    {
-            //        var result = await App.Current.MainPage.DisplayAlert("Sucess", "Added sucesfully the spent", "Ok", "-");
-
-            //    });
-            //}
-            //else
-            //{
-            //    Console.WriteLine("failed");
-            //}
+        
         }
     }
 }

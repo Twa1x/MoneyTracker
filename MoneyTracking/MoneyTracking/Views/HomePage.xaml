@@ -7,8 +7,15 @@
 
 
     <ContentPage.Content>
-       
-        <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+            <ScrollView Grid.Row="0">
+                <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
                 <Image Source="piggy_bank.png" BackgroundColor="White" VerticalOptions="Center" HeightRequest="150" />
@@ -33,23 +40,30 @@
                             <Label Grid.Row="0" Grid.Column="0" Text="{Binding Spent}"/>
                                 <Label Grid.Row="0" Grid.Column="1" Text="{Binding Data}"/>
                                 <Label Grid.Row="0"  Grid.Column="2" Text="{Binding Price}"/>
+                                <Label Grid.Row="0"  Grid.Column="3" Text="{Binding Type}"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                        <Button Text="LogOut"  Command="{Binding LogOutCommand}"></Button>
+
+                    </StackLayout>
+
+                </StackLayout>
 
 
-            </StackLayout>
+            </ScrollView>
+
+            <Button Command="{Binding AddExpenseCommand}" Grid.Row="0" Text="Add Expense" BorderColor="#2b3c3c" BorderWidth="1" FontAttributes="Bold" BackgroundColor="DarkRed" BorderRadius="35" TextColor="White" HorizontalOptions="Start" WidthRequest="160" HeightRequest="70" Margin="0,0,20,22" VerticalOptions="End"/>
+            <Button Grid.Row="0" Text="Add Income" BorderColor="#2b3c3c" BorderWidth="1" FontAttributes="Bold" BackgroundColor="DarkGreen" BorderRadius="35" TextColor="White" HorizontalOptions="End" WidthRequest="160" HeightRequest="70" Margin="0,0,20,22" VerticalOptions="End"/>
 
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
-                <Button Text="LogOut"  Command="{Binding LogOutCommand}"></Button>
-            
-            </StackLayout>
-            
-            
+        
 
 
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

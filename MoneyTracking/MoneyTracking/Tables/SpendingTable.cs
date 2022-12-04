@@ -14,5 +14,8 @@ namespace MoneyTracking.Tables
         public string Spent { get; set; }
         public double Price { get; set; }
         public string Data { get; set; }
+        public string Type { get; set; }
+
+
     }
 }
