@@ -20,12 +20,11 @@ namespace MoneyTracking.ViewModels
     {
 
         private string userName;
-        
 
 
 
         public ObservableCollection<SpendingTable> spendings { get; set; }
-       
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -40,6 +39,7 @@ namespace MoneyTracking.ViewModels
         DataBase database = new DataBase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db"));
 
 
+     
 
         public string UserName
         {
@@ -51,9 +51,10 @@ namespace MoneyTracking.ViewModels
             }
         }
 
-        
+
         public Command LogOutCommand { get; }
         public Command AddExpenseCommand { get; }
+        public Command AddMoneyCommand { get; }
 
 
         private RegUserTable user;
@@ -69,51 +70,68 @@ namespace MoneyTracking.ViewModels
         public HomeViewModel(RegUserTable user)
         {
             spendings = new ObservableCollection<SpendingTable>();
-           
+
             this.user = user;
             UserName = user.UserName;
             var dbpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db");
             var db = new SQLiteConnection(dbpath);
             var myQuery = db.Table<SpendingTable>().Where(u => u.UserId.Equals(user.UserId));
-            
+
             foreach (var item in myQuery)
             {
-                spendings.Add(new SpendingTable { Data = item.Data, Spent = item.Spent, Price = item.Price, UserId = item.UserId, SpendingId = item.SpendingId, Type=item.Type });
+                spendings.Add(new SpendingTable { Data = item.Data, Spent = item.Spent, Price = item.Price, UserId = item.UserId, SpendingId = item.SpendingId, Type = item.Type, ImageUrl=item.ImageUrl });
             }
-            
-         
+
+
             LogOutCommand = new Command(OnLogOutClicked);
             AddExpenseCommand = new Command(OnAddExpenseClicked);
-          
+            AddMoneyCommand = new Command(OnAddMoneyClicked);
         }
 
-        async  private void OnAddExpenseClicked()
+        async private void OnAddExpenseClicked()
         {
-            string name = await App.Current.MainPage.DisplayPromptAsync("Name", "On what did you spent money?");
-            string price = await App.Current.MainPage.DisplayPromptAsync("Price", "How much did it cost?");
-            string data = await App.Current.MainPage.DisplayPromptAsync("Data", "When did you buy it?");
+            string name = await App.Current.MainPage.DisplayPromptAsync("Name", "Name");
+            string price = await App.Current.MainPage.DisplayPromptAsync("Price", "Price");
+            string data = await App.Current.MainPage.DisplayPromptAsync("Data", "Data");
             string type = "Expense";
-            SpendingTable tempSpending = new SpendingTable {  SpendingId=Guid.NewGuid(), UserId = user.UserId, Data = data, Price = Convert.ToDouble(price), Spent = name, Type=type};
+            SpendingTable tempSpending = new SpendingTable { SpendingId = Guid.NewGuid(), UserId = user.UserId, Data = data, Price = Convert.ToDouble(price), Spent = name, Type = type, ImageUrl="minus.png"};
             if (database.InsertSpendingAsync(tempSpending) != null)
-           {
+            {
 
-                    Device.BeginInvokeOnMainThread(async () =>
-                    {
-                       var result = await App.Current.MainPage.DisplayAlert("Sucess", "Added sucesfully the spent", "Ok", "-");
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    var result = await App.Current.MainPage.DisplayAlert("Sucess", "Added sucesfully the expense", "Ok", "Ok");
 
-                   });
-                }
+                });
+            }
         }
+        async private void OnAddMoneyClicked()
+        {
+            string name = await App.Current.MainPage.DisplayPromptAsync("From", "From");
+            string price = await App.Current.MainPage.DisplayPromptAsync("Income", "Income");
+            string data = await App.Current.MainPage.DisplayPromptAsync("Data", "Data");
+            string type = "Income";
+            SpendingTable tempSpending = new SpendingTable { SpendingId = Guid.NewGuid(), UserId = user.UserId, Data = data, Price = Convert.ToDouble(price), Spent = name, Type = type, ImageUrl = "piggy_bank.png" };
+     
+            if (database.InsertSpendingAsync(tempSpending) != null)
+            {
 
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    var result = await App.Current.MainPage.DisplayAlert("Sucess", "Added sucesfully the income", "Ok", "Ok");
+
+                });
+            }
+        }
         private void OnLogOutClicked()
         {
-            foreach(var item in spendings)
+            foreach (var item in spendings)
             {
                 Console.WriteLine(item.UserId);
             }
             App.Current.MainPage = new NavigationPage(new LoginPage());
 
-        
+
         }
     }
 }
