@@ -23,8 +23,8 @@ namespace MoneyTracking.ViewModels
 
 
 
-        public ObservableCollection<SpendingTable> spendings { get; set; }
-        public ObservableCollection<SpendingTable> expensies { get; set; }
+        public ObservableCollection<SpendingTable> incomes { get; set; }
+        public ObservableCollection<SpendingTable> expenses { get; set; }
 
 
 
@@ -56,6 +56,8 @@ namespace MoneyTracking.ViewModels
         public Command LogOutCommand { get; }
         public Command AddExpenseCommand { get; }
         public Command AddMoneyCommand { get; }
+        public Command CheckMonthlyExpensesCommand { get; }
+        public Command CheckMonthlyIncomingsCommand { get; }
 
 
         private RegUserTable user;
@@ -70,8 +72,8 @@ namespace MoneyTracking.ViewModels
         }
         public HomeViewModel(RegUserTable user)
         {
-            spendings = new ObservableCollection<SpendingTable>();
-            expensies = new ObservableCollection<SpendingTable>();
+            incomes = new ObservableCollection<SpendingTable>();
+            expenses = new ObservableCollection<SpendingTable>();
 
             this.user = user;
             UserName = user.UserName;
@@ -82,15 +84,33 @@ namespace MoneyTracking.ViewModels
             foreach (var item in myQuery)
             {
                 if(item.Type == "Expense")
-                expensies.Add(new SpendingTable { Data = item.Data, Spent = item.Spent, Price = item.Price, UserId = item.UserId, SpendingId = item.SpendingId, Type = item.Type, ImageUrl=item.ImageUrl });
+                    expenses.Add(new SpendingTable { Data = item.Data, Spent = item.Spent, Price = item.Price, UserId = item.UserId, SpendingId = item.SpendingId, Type = item.Type, ImageUrl=item.ImageUrl });
                 else
-                 spendings.Add(new SpendingTable { Data = item.Data, Spent = item.Spent, Price = item.Price, UserId = item.UserId, SpendingId = item.SpendingId, Type = item.Type, ImageUrl = item.ImageUrl });
+                    incomes.Add(new SpendingTable { Data = item.Data, Spent = item.Spent, Price = item.Price, UserId = item.UserId, SpendingId = item.SpendingId, Type = item.Type, ImageUrl = item.ImageUrl });
             }
 
+            
 
             LogOutCommand = new Command(OnLogOutClicked);
             AddExpenseCommand = new Command(OnAddExpenseClicked);
             AddMoneyCommand = new Command(OnAddMoneyClicked);
+            CheckMonthlyIncomingsCommand = new Command(OnCheckIncomingsClicked);
+            CheckMonthlyExpensesCommand = new Command(OnCheckExpensesClicked);
+        }
+
+        private void OnCheckExpensesClicked(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        async private void OnCheckIncomingsClicked(object obj)
+        {
+            //double totalSum = 0;
+            //string result = await App.Current.MainPage.DisplayPromptAsync("Month", "Insert the number of the month");
+            //foreach(var item in incomes)
+            //{
+                
+            //}    
         }
 
         async private void OnAddExpenseClicked()
@@ -105,7 +125,7 @@ namespace MoneyTracking.ViewModels
         }
         private void OnLogOutClicked()
         {
-            foreach (var item in spendings)
+            foreach (var item in incomes)
             {
                 Console.WriteLine(item.UserId);
             }

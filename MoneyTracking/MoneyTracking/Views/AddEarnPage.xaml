@@ -17,9 +17,9 @@
 
                 </StackLayout>
                 <StackLayout VerticalOptions="CenterAndExpand">
-                    <Entry Placeholder="From" PlaceholderColor="White" Text="{Binding Spent, Mode=TwoWay}" FontSize="16" x:Name="EntryUserName"></Entry>
-                    <Entry Placeholder="Amount of money" PlaceholderColor="White" Text="{Binding Price, Mode=TwoWay }" IsPassword ="true" FontSize="16" x:Name="EntryUserPassword"></Entry>
-                    <Entry Placeholder="Data" PlaceholderColor="White" Text="{Binding Data, Mode=TwoWay }" FontSize="16" x:Name="EntryUserEmail"></Entry>
+                    <Entry Placeholder="From"  TextColor="AntiqueWhite" PlaceholderColor="White" Text="{Binding Spent, Mode=TwoWay}" FontSize="16" x:Name="EntryUserName"></Entry>
+                    <Entry Placeholder="Amount of money"  TextColor="AntiqueWhite" PlaceholderColor="White" Text="{Binding Price, Mode=TwoWay }" IsPassword ="true" FontSize="16" x:Name="EntryUserPassword"></Entry>
+                    <Entry Placeholder="Data"   TextColor="AntiqueWhite" PlaceholderColor="White" Text="{Binding Data, Mode=TwoWay }" FontSize="16" x:Name="EntryUserEmail"></Entry>
                 </StackLayout>
                 <StackLayout VerticalOptions="EndAndExpand">
                     <Button Text="Submit" Grid.Row="2" Background="#0077be" TextColor="White" Command="{Binding AddEarnCommand}"></Button>

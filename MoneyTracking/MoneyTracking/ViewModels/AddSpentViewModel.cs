@@ -18,13 +18,7 @@ namespace MoneyTracking.ViewModels
         private string price;
         private string data;
 
-        private string modifyString(string str)
-        {
-
-
-            return str;
-        }
-
+     
         DataBase database = new DataBase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db"));
         private RegUserTable user;
         public RegUserTable User

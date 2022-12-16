@@ -26,8 +26,8 @@
                 </StackLayout>
                 <StackLayout VerticalOptions="CenterAndExpand">
 
-                    <Entry TextColor="White" PlaceholderColor="White" Placeholder="UserName" Text="{Binding UserName, Mode=TwoWay}" x:Name="EntryUser" Grid.Row="0"></Entry>
-                    <Entry TextColor="White"  PlaceholderColor="White" Placeholder="Password" Text="{Binding Password, Mode=TwoWay}" IsPassword="True" x:Name="EntryPassword" Grid.Row="1"></Entry>
+                    <Entry  TextColor="AntiqueWhite" PlaceholderColor="White" Placeholder="UserName" Text="{Binding UserName, Mode=TwoWay}" x:Name="EntryUser" Grid.Row="0"></Entry>
+                    <Entry  TextColor="AntiqueWhite"  PlaceholderColor="White" Placeholder="Password" Text="{Binding Password, Mode=TwoWay}" IsPassword="True" x:Name="EntryPassword" Grid.Row="1"></Entry>
                 </StackLayout>
                 <StackLayout VerticalOptions="EndAndExpand">
                     <Button Text="Login" Grid.Row="2" Background="#0077be" TextColor="White" Command="{Binding LoginCommand}"></Button>

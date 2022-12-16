@@ -19,9 +19,9 @@
 
             </StackLayout>
             <StackLayout VerticalOptions="CenterAndExpand">
-                    <Entry Placeholder="UserName" PlaceholderColor="White" Text="{Binding UserName, Mode=TwoWay}" FontSize="16" x:Name="EntryUserName"></Entry>
-                    <Entry Placeholder="Password" PlaceholderColor="White" Text="{Binding Password, Mode=TwoWay }" IsPassword ="true" FontSize="16" x:Name="EntryUserPassword"></Entry>
-                    <Entry Placeholder="Email" PlaceholderColor="White" Text="{Binding Email, Mode=TwoWay }" FontSize="16" x:Name="EntryUserEmail"></Entry>
+                    <Entry Placeholder="UserName"   TextColor="AntiqueWhite" PlaceholderColor="White" Text="{Binding UserName, Mode=TwoWay}" FontSize="16" x:Name="EntryUserName"></Entry>
+                    <Entry Placeholder="Password"  TextColor="AntiqueWhite" PlaceholderColor="White" Text="{Binding Password, Mode=TwoWay }" IsPassword ="true" FontSize="16" x:Name="EntryUserPassword"></Entry>
+                    <Entry Placeholder="Email" TextColor="AntiqueWhite" PlaceholderColor="White" Text="{Binding Email, Mode=TwoWay }" FontSize="16" x:Name="EntryUserEmail"></Entry>
             </StackLayout>
             <StackLayout VerticalOptions="EndAndExpand">
                 <Button Text="Register" Grid.Row="2" Background="#0077be" TextColor="White" Command="{Binding RegisterCommand}"></Button>

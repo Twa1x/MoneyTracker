@@ -6,27 +6,27 @@
                xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
 
 
-   
+
     <ContentPage.Content>
 
-        
-            <ScrollView >
+
+        <ScrollView >
             <StackLayout  BackgroundColor="#0C2D48" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
                     <Image  BackgroundColor="#0C2D48" Source="piggy_bank.png" VerticalOptions="Center" HeightRequest="150" />
-                    </StackLayout>
+                </StackLayout>
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
 
                     <Label  TextColor="White" Text="Welcome back," FontSize="Large"></Label>
-                    </StackLayout>
+                </StackLayout>
 
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label  TextColor="White"  FontSize="Large" Text="{Binding UserName, Mode=TwoWay}"></Label>
-                    </StackLayout>
-                
+                </StackLayout>
+
                 <StackLayout>
                     <Label Text="INCOMES"   FontSize="Medium" TextColor="DarkGreen"></Label>
                 </StackLayout>
@@ -34,7 +34,7 @@
                     <Label Text="           From:           Amount of money:               Date: "  FontSize="Small" TextColor="AntiqueWhite"></Label>
                 </StackLayout>
                 <StackLayout BackgroundColor="#0C2D55" Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                    <CollectionView ItemsSource="{Binding spendings}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                    <CollectionView ItemsSource="{Binding incomes}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                 HeightRequest="175">
                         <CollectionView.ItemTemplate>
                             <DataTemplate >
@@ -65,15 +65,15 @@
                     <Label Text="           Spent on:       Amount of money:            Date: "   FontSize="Small" TextColor="AntiqueWhite"></Label>
                 </StackLayout>
                 <StackLayout BackgroundColor="#0C2D55" Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                    <CollectionView ItemsSource="{Binding expensies}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                    <CollectionView ItemsSource="{Binding expenses}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                 HeightRequest="175">
                         <CollectionView.ItemTemplate>
                             <DataTemplate >
-                                
+
                                 <Grid  Padding="10" RowDefinitions="Auto,Auto,Auto">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="20" />
-                                      
+
                                     </Grid.ColumnDefinitions>
                                     <Image    
                        Source="{Binding ImageUrl}"
@@ -88,21 +88,25 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                 </StackLayout>
+               
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                    <Button  Text="Check montly expenses"  Command="{Binding CheckMonthlyExpensesCommand}"></Button>
+                    <Button Text="Check montly incomes"  Command="{Binding CheckMonthlyIncomingsCommand}"></Button>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                         
+
+                        <Button  Text="Add Income"  Command="{Binding AddMoneyCommand}"></Button>
                         <Button Text="LogOut"  Command="{Binding LogOutCommand}"></Button>
-                        <Button Text="Add Income"  Command="{Binding AddMoneyCommand}"></Button>
-                        <Button Text="Add Spending"  Command="{Binding AddExpenseCommand}"></Button>
-
-
-
+                        <Button  Text="Add Spending"  Command="{Binding AddExpenseCommand}"></Button>
                     </StackLayout>
 
 
+            </StackLayout>
 
 
-                </StackLayout>
-            </ScrollView>
-    
+        </ScrollView>
+
 
     </ContentPage.Content>
 </ContentPage>
