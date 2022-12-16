@@ -4,32 +4,29 @@
              x:Class="MoneyTracking.Views.AddEarnPage">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <Grid  Margin="20,0,20,0" VerticalOptions="CenterAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
+            <StackLayout  BackgroundColor="#0C2D48" >
 
-                    <StackLayout Grid.Row="0">
-                        <Entry Placeholder="From" Text="{Binding Spent, Mode=TwoWay}" FontSize="16" x:Name="EntryUserName"></Entry>
-                    </StackLayout>
-                    <StackLayout Grid.Row="1">
-                        <Entry Placeholder="Amount of money" Text="{Binding Price, Mode=TwoWay }" FontSize="16" x:Name="EntryUserPassword"></Entry>
-                    </StackLayout>
-                    <StackLayout Grid.Row="2">
-                        <Entry Placeholder="Data" Text="{Binding Data, Mode=TwoWay }" FontSize="16" x:Name="EntryUserEmail"></Entry>
-                    </StackLayout>
+                <StackLayout  Padding="30" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
 
-                    <StackLayout Grid.Row="3">
-                        <Button Text="Submit"  Command="{Binding AddEarnCommand}" HorizontalOptions="CenterAndExpand"  TextColor="White" BackgroundColor="#0077be"></Button>
-                        <Button Text="Back"  Command="{Binding BackCommand}" HorizontalOptions="CenterAndExpand"   TextColor="White" BackgroundColor="#0077be"></Button>
-                    </StackLayout>
+                </StackLayout>
 
-                </Grid>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                    <Image  BackgroundColor="#0C2D48"  Source="plus.png" VerticalOptions="Center" HeightRequest="200" />
+                </StackLayout>
+                <StackLayout>
+
+                </StackLayout>
+                <StackLayout VerticalOptions="CenterAndExpand">
+                    <Entry Placeholder="From" PlaceholderColor="White" Text="{Binding Spent, Mode=TwoWay}" FontSize="16" x:Name="EntryUserName"></Entry>
+                    <Entry Placeholder="Amount of money" PlaceholderColor="White" Text="{Binding Price, Mode=TwoWay }" IsPassword ="true" FontSize="16" x:Name="EntryUserPassword"></Entry>
+                    <Entry Placeholder="Data" PlaceholderColor="White" Text="{Binding Data, Mode=TwoWay }" FontSize="16" x:Name="EntryUserEmail"></Entry>
+                </StackLayout>
+                <StackLayout VerticalOptions="EndAndExpand">
+                    <Button Text="Submit" Grid.Row="2" Background="#0077be" TextColor="White" Command="{Binding AddEarnCommand}"></Button>
+                    <Button Text="Back" Grid.Row="3" Command="{Binding BackCommand}"></Button>
+                </StackLayout>
             </StackLayout>
+
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

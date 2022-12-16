@@ -3,33 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoneyTracking.Views.RegistrationPage">
     <ContentPage.Content>
+
         <ScrollView>
-            <StackLayout>
-                <Grid Margin="20,0,20,0" VerticalOptions="CenterAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
+            <StackLayout  BackgroundColor="#0C2D48" >
 
-                    <StackLayout Grid.Row="0">
-                        <Entry Placeholder="UserName" Text="{Binding UserName, Mode=TwoWay}" FontSize="16" x:Name="EntryUserName"></Entry>
-                    </StackLayout>
-                    <StackLayout Grid.Row="1">
-                        <Entry Placeholder="Password" Text="{Binding Password, Mode=TwoWay }" IsPassword ="true" FontSize="16" x:Name="EntryUserPassword"></Entry>
-                    </StackLayout>
-                    <StackLayout Grid.Row="2">
-                        <Entry Placeholder="Email" Text="{Binding Email, Mode=TwoWay }" FontSize="16" x:Name="EntryUserEmail"></Entry>
-                    </StackLayout>
+            <StackLayout  Padding="30" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
 
-                    <StackLayout Grid.Row="3">
-                        <Button Text="Register"  Command="{Binding RegisterCommand}" HorizontalOptions="CenterAndExpand"  WidthRequest="100" TextColor="White" BackgroundColor="Blue"></Button>
-                        <Button Text="Back"  Command="{Binding BackCommand}" HorizontalOptions="CenterAndExpand"  WidthRequest="100" TextColor="White" BackgroundColor="Blue"></Button>
-                    </StackLayout>
-
-                </Grid>
+                <Label  TextColor="White" Text="REGISTRATION" FontSize="Large"></Label>
             </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                <Image  BackgroundColor="#0C2D48"  Source="money.png" VerticalOptions="Center" HeightRequest="300" />
+            </StackLayout>
+            <StackLayout>
+
+            </StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand">
+                    <Entry Placeholder="UserName" PlaceholderColor="White" Text="{Binding UserName, Mode=TwoWay}" FontSize="16" x:Name="EntryUserName"></Entry>
+                    <Entry Placeholder="Password" PlaceholderColor="White" Text="{Binding Password, Mode=TwoWay }" IsPassword ="true" FontSize="16" x:Name="EntryUserPassword"></Entry>
+                    <Entry Placeholder="Email" PlaceholderColor="White" Text="{Binding Email, Mode=TwoWay }" FontSize="16" x:Name="EntryUserEmail"></Entry>
+            </StackLayout>
+            <StackLayout VerticalOptions="EndAndExpand">
+                <Button Text="Register" Grid.Row="2" Background="#0077be" TextColor="White" Command="{Binding RegisterCommand}"></Button>
+                <Button Text="Back" Grid.Row="3" Command="{Binding BackCommand}"></Button>
+            </StackLayout>
+
+        </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

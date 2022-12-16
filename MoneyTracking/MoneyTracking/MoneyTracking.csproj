@@ -9,6 +9,7 @@
     <None Remove="Resources\menu.png" />
     <None Remove="Resources\minus.png" />
     <None Remove="Resources\minus1.png" />
+    <None Remove="Resources\money.png" />
     <None Remove="Resources\piggy_bank.png" />
     <None Remove="Resources\plus.jpg" />
     <None Remove="Resources\plus.png" />
@@ -47,6 +48,7 @@
 
   <ItemGroup>
     <Resource Include="Resources\minus.png" />
+    <Resource Include="Resources\money.png" />
     <Resource Include="Resources\piggy_bank.png" />
     <Resource Include="Resources\plus.jpg" />
     <Resource Include="Resources\plus.png" />

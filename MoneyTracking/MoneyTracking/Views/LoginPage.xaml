@@ -7,22 +7,35 @@
              x:Class="MoneyTracking.Views.LoginPage"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
+
         <ScrollView>
-            <StackLayout>
-                <Grid VerticalOptions="CenterAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Entry Placeholder="UserName" Text="{Binding UserName, Mode=TwoWay}" x:Name="EntryUser" Grid.Row="0"></Entry>
-                    <Entry Placeholder="Password" Text="{Binding Password, Mode=TwoWay}" IsPassword="True" x:Name="EntryPassword" Grid.Row="1"></Entry>
+            <StackLayout  BackgroundColor="#0C2D48" >
+
+                <StackLayout  Padding="30" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+
+                    <Label  TextColor="White" Text="MONEY TRACKER" FontSize="Large"></Label>
+                </StackLayout>
+                <StackLayout>
+
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                    <Image  BackgroundColor="#0C2D48"  Source="money.png" VerticalOptions="Center" HeightRequest="300" />
+                </StackLayout>
+                <StackLayout>
+
+                </StackLayout>
+                <StackLayout VerticalOptions="CenterAndExpand">
+
+                    <Entry TextColor="White" PlaceholderColor="White" Placeholder="UserName" Text="{Binding UserName, Mode=TwoWay}" x:Name="EntryUser" Grid.Row="0"></Entry>
+                    <Entry TextColor="White"  PlaceholderColor="White" Placeholder="Password" Text="{Binding Password, Mode=TwoWay}" IsPassword="True" x:Name="EntryPassword" Grid.Row="1"></Entry>
+                </StackLayout>
+                <StackLayout VerticalOptions="EndAndExpand">
                     <Button Text="Login" Grid.Row="2" Background="#0077be" TextColor="White" Command="{Binding LoginCommand}"></Button>
                     <Button Text="SignUp" Grid.Row="3" Command="{Binding SignUpCommand}"></Button>
-                </Grid>
+
+                </StackLayout>
+
             </StackLayout>
         </ScrollView>
-        
     </ContentPage.Content>
 </ContentPage>
