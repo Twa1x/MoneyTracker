@@ -12,7 +12,7 @@ namespace MoneyTracking.Tables
         public Guid SpendingId { get; set; }
         public Guid UserId { get; set; }
         public string Spent { get; set; }
-        public double Price { get; set; }
+        public string Price { get; set; }
         public string Data { get; set; }
         public string Type { get; set; }
         public string ImageUrl { get; set; }

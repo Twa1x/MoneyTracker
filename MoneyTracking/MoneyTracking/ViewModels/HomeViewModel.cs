@@ -24,6 +24,7 @@ namespace MoneyTracking.ViewModels
 
 
         public ObservableCollection<SpendingTable> spendings { get; set; }
+        public ObservableCollection<SpendingTable> expensies { get; set; }
 
 
 
@@ -70,16 +71,20 @@ namespace MoneyTracking.ViewModels
         public HomeViewModel(RegUserTable user)
         {
             spendings = new ObservableCollection<SpendingTable>();
+            expensies = new ObservableCollection<SpendingTable>();
 
             this.user = user;
             UserName = user.UserName;
             var dbpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db");
             var db = new SQLiteConnection(dbpath);
             var myQuery = db.Table<SpendingTable>().Where(u => u.UserId.Equals(user.UserId));
-
+           
             foreach (var item in myQuery)
             {
-                spendings.Add(new SpendingTable { Data = item.Data, Spent = item.Spent, Price = item.Price, UserId = item.UserId, SpendingId = item.SpendingId, Type = item.Type, ImageUrl=item.ImageUrl });
+                if(item.Type == "Expense")
+                expensies.Add(new SpendingTable { Data = item.Data, Spent = item.Spent, Price = item.Price, UserId = item.UserId, SpendingId = item.SpendingId, Type = item.Type, ImageUrl=item.ImageUrl });
+                else
+                 spendings.Add(new SpendingTable { Data = item.Data, Spent = item.Spent, Price = item.Price, UserId = item.UserId, SpendingId = item.SpendingId, Type = item.Type, ImageUrl = item.ImageUrl });
             }
 
 
@@ -90,38 +95,13 @@ namespace MoneyTracking.ViewModels
 
         async private void OnAddExpenseClicked()
         {
-            string name = await App.Current.MainPage.DisplayPromptAsync("Name", "Name");
-            string price = await App.Current.MainPage.DisplayPromptAsync("Price", "Price");
-            string data = await App.Current.MainPage.DisplayPromptAsync("Data", "Data");
-            string type = "Expense";
-            SpendingTable tempSpending = new SpendingTable { SpendingId = Guid.NewGuid(), UserId = user.UserId, Data = data, Price = Convert.ToDouble(price), Spent = name, Type = type, ImageUrl="minus.png"};
-            if (database.InsertSpendingAsync(tempSpending) != null)
-            {
-
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    var result = await App.Current.MainPage.DisplayAlert("Sucess", "Added sucesfully the expense", "Ok", "Ok");
-
-                });
-            }
+            App.Current.MainPage = new NavigationPage(new AddSpentPage(user));
         }
         async private void OnAddMoneyClicked()
         {
-            string name = await App.Current.MainPage.DisplayPromptAsync("From", "From");
-            string price = await App.Current.MainPage.DisplayPromptAsync("Income", "Income");
-            string data = await App.Current.MainPage.DisplayPromptAsync("Data", "Data");
-            string type = "Income";
-            SpendingTable tempSpending = new SpendingTable { SpendingId = Guid.NewGuid(), UserId = user.UserId, Data = data, Price = Convert.ToDouble(price), Spent = name, Type = type, ImageUrl = "piggy_bank.png" };
-     
-            if (database.InsertSpendingAsync(tempSpending) != null)
-            {
 
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    var result = await App.Current.MainPage.DisplayAlert("Sucess", "Added sucesfully the income", "Ok", "Ok");
-
-                });
-            }
+            App.Current.MainPage = new NavigationPage(new AddEarnPage(user));
+        
         }
         private void OnLogOutClicked()
         {

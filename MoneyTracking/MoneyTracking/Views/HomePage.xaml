@@ -8,63 +8,92 @@
 
    
     <ContentPage.Content>
-      
 
-        <Grid>
         
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-
-            <ScrollView Grid.Row="0">
-                <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <ScrollView >
+            <StackLayout  BackgroundColor="#0C2D48" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                        <Image Source="piggy_bank.png" BackgroundColor="White" VerticalOptions="Center" HeightRequest="150" />
+                    <Image  BackgroundColor="#0C2D48" Source="piggy_bank.png" VerticalOptions="Center" HeightRequest="150" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
 
-                        <Label Text="Welcome,"></Label>
+                    <Label  TextColor="White" Text="Welcome back," FontSize="Large"></Label>
                     </StackLayout>
 
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                        <Label Text="{Binding UserName, Mode=TwoWay}"></Label>
+                    <Label  TextColor="White"  FontSize="Large" Text="{Binding UserName, Mode=TwoWay}"></Label>
                     </StackLayout>
+                
+                <StackLayout>
+                    <Label Text="INCOMES"   FontSize="Medium" TextColor="DarkGreen"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="           From:           Amount of money:               Date: "  FontSize="Small" TextColor="AntiqueWhite"></Label>
+                </StackLayout>
+                <StackLayout BackgroundColor="#0C2D55" Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <CollectionView ItemsSource="{Binding spendings}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                HeightRequest="175">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate >
 
-                    <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <CollectionView ItemsSource="{Binding spendings}"  VerticalOptions="CenterAndExpand"
-                HeightRequest="200">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Padding="10" RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto, Auto, Auto">
-                                        <Image   Grid.Column="0" Grid.RowSpan="2"
+                                <Grid  Padding="10" RowDefinitions="Auto,Auto,Auto">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20" />
+
+                                    </Grid.ColumnDefinitions>
+                                    <Image    
                        Source="{Binding ImageUrl}"
-                       Aspect="AspectFill"
+                        HorizontalOptions="Start"    
                        HeightRequest="20"
                        WidthRequest="20" />
-                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Spent}"/>
-                                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding Data}"/>
-                                        <Label Grid.Row="0"  Grid.Column="3" Text="{Binding Price}"/>
-                                        <Label Grid.Row="0"  Grid.Column="4" Text="{Binding Type}"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
+                                    <Label TextColor="White" Grid.Row="0" Grid.Column="1" Text="{Binding Spent}" />
+                                    <Label TextColor="White" Grid.Row="0"  Grid.Column="2" Text="{Binding Price}" />
+                                    <Label TextColor="White" Grid.Row="0" Grid.Column="3" Text="{Binding Data}" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
 
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                <StackLayout>
+                    <Label Text="SPENDINGS" FontSize="Medium" TextColor="DarkRed"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="           Spent on:       Amount of money:            Date: "   FontSize="Small" TextColor="AntiqueWhite"></Label>
+                </StackLayout>
+                <StackLayout BackgroundColor="#0C2D55" Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <CollectionView ItemsSource="{Binding expensies}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                HeightRequest="175">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate >
+                                
+                                <Grid  Padding="10" RowDefinitions="Auto,Auto,Auto">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20" />
+                                      
+                                    </Grid.ColumnDefinitions>
+                                    <Image    
+                       Source="{Binding ImageUrl}"
+                        HorizontalOptions="Start"    
+                       HeightRequest="20"
+                       WidthRequest="20" />
+                                    <Label TextColor="White" Grid.Row="0" Grid.Column="1" Text="{Binding Spent}" />
+                                    <Label TextColor="White" Grid.Row="0"  Grid.Column="2" Text="{Binding Price}" />
+                                    <Label TextColor="White" Grid.Row="0" Grid.Column="3" Text="{Binding Data}" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
                         <Button Text="LogOut"  Command="{Binding LogOutCommand}"></Button>
+                        <Button Text="Add Income"  Command="{Binding AddMoneyCommand}"></Button>
+                        <Button Text="Add Spending"  Command="{Binding AddExpenseCommand}"></Button>
 
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
-                        <Button Command="{Binding AddExpenseCommand}" Grid.Row="0" Text="Add Expense" BorderColor="#2b3c3c" BorderWidth="1" FontAttributes="Bold" BackgroundColor="DarkRed" BorderRadius="35" TextColor="White" HorizontalOptions="Start" WidthRequest="160" HeightRequest="70" Margin="0,0,20,22" VerticalOptions="End"/>
 
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
-                        <Button Command="{Binding AddMoneyCommand}" Grid.Row="0" Text="Add Income" BorderColor="#2b3c3c" BorderWidth="1" FontAttributes="Bold" BackgroundColor="DarkGreen" BorderRadius="35" TextColor="White" HorizontalOptions="End" WidthRequest="160" HeightRequest="70" Margin="0,0,20,22" VerticalOptions="End"/>
 
                     </StackLayout>
 
@@ -73,9 +102,7 @@
 
                 </StackLayout>
             </ScrollView>
-            
+    
 
-        </Grid>
-      
     </ContentPage.Content>
 </ContentPage>

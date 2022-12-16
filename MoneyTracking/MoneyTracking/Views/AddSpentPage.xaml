@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoneyTracking.Views.AddSpentPage">
+ 
+        <ContentPage.Content>
+            <ScrollView>
+                <StackLayout>
+                    <Grid Margin="20,0,20,0" VerticalOptions="CenterAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Row="0">
+                            <Entry Placeholder="Name" Text="{Binding Spent, Mode=TwoWay}" FontSize="16" x:Name="EntryUserName"></Entry>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1">
+                            <Entry Placeholder="Amount of money" Text="{Binding Price, Mode=TwoWay }" FontSize="16" x:Name="EntryUserPassword"></Entry>
+                        </StackLayout>
+                        <StackLayout Grid.Row="2">
+                            <Entry Placeholder="Data" Text="{Binding Data, Mode=TwoWay }" FontSize="16" x:Name="EntryUserEmail"></Entry>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="3">
+                        <Button Text="Submit"  Command="{Binding AddExpenseCommand}" HorizontalOptions="CenterAndExpand"  TextColor="White" BackgroundColor="#0077be"></Button>
+                        <Button Text="Back"  Command="{Binding BackCommand}" HorizontalOptions="CenterAndExpand"   TextColor="White" BackgroundColor="#0077be"></Button>
+                    </StackLayout>
+
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+</ContentPage>

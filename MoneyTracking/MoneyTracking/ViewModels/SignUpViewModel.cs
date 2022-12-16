@@ -22,6 +22,7 @@ namespace MoneyTracking.ViewModels
         private string email;
 
         public Command RegisterCommand { get; }
+        public Command BackCommand { get; }
 
         public string UserName
         {
@@ -68,9 +69,13 @@ namespace MoneyTracking.ViewModels
         {
           
             RegisterCommand = new Command(Register);
+            BackCommand = new Command(Back);
         }
 
-     
+        private void Back()
+        {
+            App.Current.MainPage = new NavigationPage(new LoginPage());
+        }
         private void Register()
         {
             Console.WriteLine(userName);

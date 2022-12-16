@@ -6,14 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\menu.png" />
     <None Remove="Resources\minus.png" />
     <None Remove="Resources\minus1.png" />
     <None Remove="Resources\piggy_bank.png" />
     <None Remove="Resources\plus.jpg" />
+    <None Remove="Resources\plus.png" />
     <None Remove="Resources\plus1.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\menu.png" />
     <Resource Include="Resources\minus1.png" />
   </ItemGroup>
 
@@ -28,6 +31,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\AddEarnPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AddSpentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -40,6 +49,7 @@
     <Resource Include="Resources\minus.png" />
     <Resource Include="Resources\piggy_bank.png" />
     <Resource Include="Resources\plus.jpg" />
+    <Resource Include="Resources\plus.png" />
     <Resource Include="Resources\plus1.jpg" />
   </ItemGroup>
 </Project>
