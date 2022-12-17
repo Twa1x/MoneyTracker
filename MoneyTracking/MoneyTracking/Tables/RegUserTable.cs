@@ -1,4 +1,5 @@
 ﻿using MoneyTracking.Models;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -8,6 +9,7 @@ namespace MoneyTracking.Tables
 {
     public class RegUserTable
     {
+        [PrimaryKey]
         public Guid UserId { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }

@@ -102,7 +102,7 @@ namespace MoneyTracking.ViewModels
 
         private void ResetClicked(object obj)
         {
-            Console.WriteLine("delete called");
+            
             var dbpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db");
             var db = new SQLiteConnection(dbpath);
             var myQuery = db.Table<SpendingTable>().Where(u => u.UserId.Equals(user.UserId));

@@ -54,5 +54,6 @@ namespace MoneyTracking.Data
             return database.DeleteAsync(spendingTable);
             
         }
+       
     }
 }
