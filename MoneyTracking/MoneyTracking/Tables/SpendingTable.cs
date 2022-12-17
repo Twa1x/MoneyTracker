@@ -8,7 +8,7 @@ namespace MoneyTracking.Tables
 {
     public class SpendingTable
     {
-        
+        [PrimaryKey]
         public Guid SpendingId { get; set; }
         public Guid UserId { get; set; }
         public string Spent { get; set; }

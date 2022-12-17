@@ -56,8 +56,9 @@ namespace MoneyTracking.ViewModels
         public Command LogOutCommand { get; }
         public Command AddExpenseCommand { get; }
         public Command AddMoneyCommand { get; }
-        public Command CheckMonthlyExpensesCommand { get; }
-        public Command CheckMonthlyIncomingsCommand { get; }
+        public Command TotalExpensesCommand { get; }
+        public Command TotalIncomingsCommand { get; }
+        public Command ResetCommand { get; }
 
 
         private RegUserTable user;
@@ -94,23 +95,39 @@ namespace MoneyTracking.ViewModels
             LogOutCommand = new Command(OnLogOutClicked);
             AddExpenseCommand = new Command(OnAddExpenseClicked);
             AddMoneyCommand = new Command(OnAddMoneyClicked);
-            CheckMonthlyIncomingsCommand = new Command(OnCheckIncomingsClicked);
-            CheckMonthlyExpensesCommand = new Command(OnCheckExpensesClicked);
+            TotalIncomingsCommand = new Command(OnCheckIncomingsClicked);
+            TotalExpensesCommand = new Command(OnCheckExpensesClicked);
+            ResetCommand = new Command(ResetClicked);
         }
 
-        private void OnCheckExpensesClicked(object obj)
+        private void ResetClicked(object obj)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("delete called");
+            var dbpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db");
+            var db = new SQLiteConnection(dbpath);
+            var myQuery = db.Table<SpendingTable>().Where(u => u.UserId.Equals(user.UserId));
+            foreach (var item in myQuery)
+               db.Delete(item);
+        }
+
+        async private void OnCheckExpensesClicked(object obj)
+        {
+            double totalSum = 0;
+            foreach (var item in expenses)
+            {
+                totalSum = totalSum + Convert.ToDouble(item.Price);
+            }
+            await App.Current.MainPage.DisplayAlert("Total expenses", totalSum.ToString()+"$", "OK");
         }
 
         async private void OnCheckIncomingsClicked(object obj)
         {
-            //double totalSum = 0;
-            //string result = await App.Current.MainPage.DisplayPromptAsync("Month", "Insert the number of the month");
-            //foreach(var item in incomes)
-            //{
-                
-            //}    
+            double totalSum = 0;
+            foreach(var item in incomes)
+            {
+                totalSum = totalSum + Convert.ToDouble(item.Price);
+            }
+            await App.Current.MainPage.DisplayAlert("Total incomes", totalSum.ToString()+"$", "OK");
         }
 
         async private void OnAddExpenseClicked()

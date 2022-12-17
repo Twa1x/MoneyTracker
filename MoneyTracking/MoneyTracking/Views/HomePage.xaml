@@ -31,7 +31,7 @@
                     <Label Text="INCOMES"   FontSize="Medium" TextColor="DarkGreen"></Label>
                 </StackLayout>
                 <StackLayout>
-                    <Label Text="           From:           Amount of money:               Date: "  FontSize="Small" TextColor="AntiqueWhite"></Label>
+                    <Label Text="           From:           Amount of money($):               Date: "  FontSize="Small" TextColor="AntiqueWhite"></Label>
                 </StackLayout>
                 <StackLayout BackgroundColor="#0C2D55" Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                     <CollectionView ItemsSource="{Binding incomes}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
@@ -62,7 +62,7 @@
                     <Label Text="SPENDINGS" FontSize="Medium" TextColor="DarkRed"></Label>
                 </StackLayout>
                 <StackLayout>
-                    <Label Text="           Spent on:       Amount of money:            Date: "   FontSize="Small" TextColor="AntiqueWhite"></Label>
+                    <Label Text="           Spent on:       Amount of money($):            Date: "   FontSize="Small" TextColor="AntiqueWhite"></Label>
                 </StackLayout>
                 <StackLayout BackgroundColor="#0C2D55" Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                     <CollectionView ItemsSource="{Binding expenses}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
@@ -90,8 +90,9 @@
                 </StackLayout>
                
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
-                    <Button  Text="Check montly expenses"  Command="{Binding CheckMonthlyExpensesCommand}"></Button>
-                    <Button Text="Check montly incomes"  Command="{Binding CheckMonthlyIncomingsCommand}"></Button>
+                    <Button  Text="Total expenses"  Command="{Binding TotalExpensesCommand}"></Button>
+                    <Button Text="Total incomes"  Command="{Binding TotalIncomingsCommand}"></Button>
+                    <Button Text="Reset inputs"  Command="{Binding ResetCommand}"></Button>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
                          

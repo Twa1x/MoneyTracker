@@ -48,10 +48,11 @@ namespace MoneyTracking.Data
         }
 
 
-        public Task<int> DeleteUserAsync(RegUserTable User)
+        public Task<int> DeleteAllSpendingTables(SpendingTable spendingTable)
         {
             // Delete a User.
-            return database.DeleteAsync(User);
+            return database.DeleteAsync(spendingTable);
+            
         }
     }
 }
