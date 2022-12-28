@@ -1,5 +1,4 @@
 ﻿using MoneyTracking.Data;
-using MoneyTracking.Services;
 using MoneyTracking.Views;
 using System;
 using System.IO;

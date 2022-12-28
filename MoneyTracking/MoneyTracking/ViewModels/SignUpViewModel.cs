@@ -1,5 +1,4 @@
 ﻿using MoneyTracking.Data;
-using MoneyTracking.Models;
 using MoneyTracking.Tables;
 using MoneyTracking.Views;
 using SQLite;

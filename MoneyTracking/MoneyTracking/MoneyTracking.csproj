@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewModels\NewItemViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\menu.png" />
     <None Remove="Resources\minus.png" />
     <None Remove="Resources\minus1.png" />
@@ -53,5 +57,10 @@
     <Resource Include="Resources\plus.jpg" />
     <Resource Include="Resources\plus.png" />
     <Resource Include="Resources\plus1.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

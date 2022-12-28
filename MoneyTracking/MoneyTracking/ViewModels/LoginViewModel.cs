@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace MoneyTracking.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel 
     {
 
         DataBase database = new DataBase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "UserDatabase.db"));
