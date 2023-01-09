@@ -85,7 +85,7 @@ namespace MoneyTracking.ViewModels
             SpendingTable tempSpending = new SpendingTable { SpendingId = Guid.NewGuid(), UserId = user.UserId, Data = data, Price = price, Spent = spent, Type = "Expense", ImageUrl = "minus.png" };
 
             Regex regex = new Regex("^[0-9]{1,2}\\/[0-9]{1,2}\\/[0-9]{4}$");
-            Regex regexPrice = new Regex("^[0-9]*[.][0-9]*$");
+            Regex regexPrice = new Regex("^[0-9]*[.]*[0-9]*$");
             Match match = regex.Match(Data);
             Match matchPrice = regexPrice.Match(Price);
 
